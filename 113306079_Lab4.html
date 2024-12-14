@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>113306079_Lab4</title>
+
+	<style type="text/css">
+		body {
+  text-align: center;
+  background-color: #283149;
+}
+
+h1 {
+  font-size: 5rem;
+  color: #DBEDF3;
+  font-family: "Arvo", cursive;
+  text-shadow: 3px 0 #DA0463;
+
+}
+
+.w {
+  background-image: url("C:\Users\mcyan\AppData\Local\Temp\969dd189-8b79-4782-8108-3075a8e5c902_Drum Kit Starting Files-2 (2).zip.902\Drum Kit Starting Files-2\images\crash.png");
+}
+
+.a {
+  background-image: url("C:\Users\mcyan\AppData\Local\Temp\2507785b-cfe6-4223-b512-a01980dccdf4_Drum Kit Starting Files-2 (2).zip.df4\Drum Kit Starting Files-2\images\kick.png");
+}
+
+.s {
+  background-image: url("C:\Users\mcyan\AppData\Local\Temp\ee4b8361-99e6-446c-a1a4-54f2a27fa0d2_Drum Kit Starting Files-2 (2).zip.0d2\Drum Kit Starting Files-2\images\snare.png");
+}
+
+.d {
+  background-image: url("C:\Users\mcyan\AppData\Local\Temp\5edd9852-af43-4f1f-9dc2-c3d9ce3fa6e1_Drum Kit Starting Files-2 (2).zip.6e1\Drum Kit Starting Files-2\images\tom1.png");
+}
+
+.j {
+  background-image: url("C:\Users\mcyan\AppData\Local\Temp\49e3da07-6a87-4259-9960-ef8d7cedfd77_Drum Kit Starting Files-2 (2).zip.d77\Drum Kit Starting Files-2\images\tom2.png");
+}
+
+.k {
+  background-image: url("C:\Users\mcyan\AppData\Local\Temp\681ffc74-b870-4517-a319-87b0008692f5_Drum Kit Starting Files-2 (2).zip.2f5\Drum Kit Starting Files-2\images\tom3.png");
+}
+
+.l {
+  background-image: url("C:\Users\mcyan\AppData\Local\Temp\a11b72c2-d3a4-430c-a0a2-e1aa706ba53f_Drum Kit Starting Files-2 (2).zip.53f\Drum Kit Starting Files-2\images\tom4.png");
+}
+
+.set {
+  margin: 10% auto;
+}
+
+.pressed {
+  box-shadow: 0 3px 4px 0 #DBEDF3;
+  opacity: 0.5;
+}
+
+.red {
+  color: red;
+}
+
+.drum {
+  outline: none;
+  border: 10px solid #404B69;
+  font-size: 5rem;
+  font-family: 'Arvo', cursive;
+  line-height: 2;
+  font-weight: 900;
+  color: #DA0463;
+  text-shadow: 3px 0 #DBEDF3;
+  border-radius: 15px;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  margin: 10px;
+  background-color: white;
+}
+
+	</style>
+</head>
+<body>
+	 <h1>Drum Kit</h1>
+    <div class="set">
+        <button class="drum w">w</button>
+        <button class="drum a">a</button>
+        <button class="drum s">s</button>
+        <button class="drum d">d</button>
+        <button class="drum j">j</button>
+        <button class="drum k">k</button>
+        <button class="drum l">l</button>
+    </div>
+
+    
+	<script type="text/javascript">
+		let drums = document.querySelectorAll('.drum');  // Select all elements with the 'drum' class
+
+// Function to play sound and animate button
+function handleDrumClick(event) {
+    let buttonInnerHTML = event.target.innerHTML;
+    playSound(buttonInnerHTML);
+    animateButton(buttonInnerHTML);
+}
+
+// Loop through all drum buttons and add event listeners
+drums.forEach(function (drum) {
+    drum.addEventListener('click', handleDrumClick);
+});
+
+// Add event listener for keyboard press
+document.addEventListener('keydown', function (event) {
+    let key = event.key;  // Get the pressed key
+    if (['w', 'a', 's', 'd', 'j', 'k', 'l'].includes(key)) {
+        playSound(key);
+        animateButton(key);
+    }
+});
+
+// Function to play sound based on key or button click
+function playSound(key) {
+    let sound;
+    switch (key) {
+        case 'w':
+            sound = new Audio("crash.mp3");
+            break;
+        case 'a':
+            sound = new Audio('kick.mp3');
+            break;
+        case 's':
+            sound = new Audio('sounds/snare.mp3');
+            break;
+        case 'd':
+            sound = new Audio('sounds/tom-1.mp3');
+            break;
+        case 'j':
+            sound = new Audio('sounds/tom-2.mp3');
+            break;
+        case 'k':
+            sound = new Audio('sounds/tom-3.mp3');
+            break;
+        case 'l':
+            sound = new Audio('sounds/tom-4.mp3');
+            break;
+        default:
+            return; // Do nothing if the key doesn't match
+    }
+    sound.play();  // Play the corresponding sound
+}
+
+// Function to animate the button when clicked or key is pressed
+function animateButton(currentKey) {
+    let activeButton = document.querySelector('.' + currentKey);  // Find the corresponding button
+    activeButton.classList.add('pressed');  // Add the 'pressed' class to animate the button
+    setTimeout(function () {
+        activeButton.classList.remove('pressed');  // Remove the 'pressed' class after 100ms
+    }, 100);
+}
+	</script>
+
+</body>
+</html>
